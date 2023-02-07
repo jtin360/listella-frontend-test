@@ -37,13 +37,13 @@ const Gallery = ({ photos }: GalleryProps) => {
                         <Image src={Planet.src} alt={'Planet'} width={108} height={109} blurDataURL={Planet.blurDataURL}></Image>
                     </div>
                     <div className='flex flex-col ml-6'>
-                        <h1>NASA's Space Database</h1>
+                        <h1>NASA&apos;s Space Database</h1>
                         <span>Our Public Gallery for Outer Space</span>
                     </div>
                 </div>
                 <hr className={`${styles['spacer-purple']} my-4`}></hr>
                 <div className='mb-12'>
-                    <p className='text-2xl font-normal whitespace-normal'>We want to see space through your eyes! Take photos and upload them to our public library. Our goal is to provide the largest database of quality images. Space is amazing! Let's capture it together!</p>
+                    <p className='text-2xl font-normal whitespace-normal'>We want to see space through your eyes! Take photos and upload them to our public library. Our goal is to provide the largest database of quality images. Space is amazing! Let&apos;s capture it together!</p>
                 </div>
                 <div className='flex flex-col mb-5'>
                     <h1>Featured Images</h1>
