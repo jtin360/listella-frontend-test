@@ -39,3 +39,8 @@ https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_1280/v167545281
 5. Drag and drop -> Max 5 files and 5mb size accepting only 3 image extensions
 
 To test if this works, you can create a button that console.log files from the context provider after dropping some image files or selecting as input.
+
+
+FYI:
+
+In the real-world, I would've created branches and incrementally committed my changes and also not push the env file.
