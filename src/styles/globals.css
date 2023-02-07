@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::-webkit-scrollbar {
+    display: none;
+}
+html, body 
+{ 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+} 
+
+:root {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+    --text-black: #000000;
+    --text-gray: #6B6B6B;
+    --text-blue: #4D54FF;
+    --text-underline-teal: #ACFFFF;
+    --spacer-purple: rgba(151, 71, 255, 0.3);
+    --spacer-gray: #F0F0F0;
+    --underline-gray: rgba(0, 0, 0, 0.37);
+    --bg-color: #4E1C90;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+main {
+    flex: 1;
+    overflow: auto;
+}

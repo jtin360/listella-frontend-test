@@ -1,0 +1,7 @@
+.image-item {
+    border-radius: 10px;
+    height: auto;
+    min-height: 208px;
+    width: 240px;
+    object-fit: cover;
+}

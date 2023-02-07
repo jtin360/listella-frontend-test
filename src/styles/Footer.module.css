@@ -1,0 +1,25 @@
+.footer-text {
+    font-size: 16px;
+    line-height: 22px;
+    margin-right: 80px;
+    color: white;
+}
+
+.footer-text:first-child {
+    margin-left: 48px;
+}
+
+.footer-container {
+    background-color: var(--bg-color);
+    height: 76px;
+    list-style: none;
+}
+
+.nasa-text {
+    color: white;
+    font-weight: 300;
+    size: 24px;
+    line-height: 33px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
