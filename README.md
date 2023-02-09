@@ -1,8 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+Install all dependecies using the following command:
+
+npm i
+# or
+yarn
+
+To run the dev server use the following command:
 
 ```bash
 npm run dev
@@ -14,25 +18,29 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Some notes to consider
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. I assumed that this test should support some degree of mobile design. The design is responsive to the size of a tablet but nothing less of that.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. This app does server-side rendering and it pulls up to 1k images in one api fetch if it is available to. The intent of this is show you that even though it is pulling a lot of data it not displaying everything at once. By effectively utilizing virtual window, it is not inserting every single image element into the dom and rendering it out but rather displaying the images within the window size. To even improve the efficiency further, we could've fetch like 50 or so images and continue to fetch when we close to the 50th image. By doing so, we are combining pagination and infinite scrolling and providing users with the best user experience. I felt like this was an overkill for the test so virtualize window was sufficient within the timeline.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. NextJS provides a great way to display images using their version of <img> that already does out of the box optimization. It is great if we know the dimensions of the images before hand. Using Nasa's api, we don't really know these so we could not optimize to the best of our ability and provide the srcset for different device sizes. 
 
-## Learn More
+If I created the api myself, I would integrate cloudinary into a middleware for the image upload. It would be compressed to webp and ready for the frontend.It would be able to easily use the appropriate size for given device size. It would look something like this:
 
-To learn more about Next.js, take a look at the following resources:
+https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_256/v1675452816/astronaut_uhzhrl.webp 256w,
+https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_512/v1675452816/astronaut_uhzhrl.webp 512w,
+https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_768/v1675452816/astronaut_uhzhrl.webp 768w,
+https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_1024/v1675452816/astronaut_uhzhrl.webp 1024w,
+https://res.cloudinary.com/dtlqlf4de/image/upload/f_auto,q_100,w_1280/v1675452816/astronaut_uhzhrl.webp 1280w'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. http://localhost:3000/error/404 -> Force an error to see if api fetch error handling works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Drag and drop -> Max 5 files and 5mb size accepting only 3 image extensions
 
-## Deploy on Vercel
+To test if this works, you can create a button that console.log files from the context provider after dropping some image files or selecting as input.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+FYI:
+
+In the real-world, I would've created branches and incrementally committed my changes and also not push the env file.
