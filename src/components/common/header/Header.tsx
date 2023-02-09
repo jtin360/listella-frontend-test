@@ -15,7 +15,6 @@ export interface ToolbarItemProps extends NavigationProps {
   icon?: string | StaticImageData,
   width?: number,
   height?: number,
-  className?: string | undefined
 }
 
 //add custom features for searchbar/share/dropdown components if needed in the future
@@ -82,13 +81,13 @@ const dropDownMenu: NavigationItemProps[] = [
   },
   {
     name: 'Benefits to You',
-    path: '/Benefits-to-you'
+    path: '/benefits-to-you'
   }
 ]
 
 const Header = () => {
   return (
-    <div className='w-100 flex flex-col items-center mt-10 mb-6'>
+    <header className='w-100 flex flex-col items-center mt-10 mb-6'>
      <div className="logo-container flex flex-row justify-items-center items-center">
         <Image
           className='mr-10'
@@ -111,7 +110,7 @@ const Header = () => {
         <Share className='mx-5 py-2' icon={ShareIcon} />
         <DropDownMenu className='mx-5 py-2'/>
      </Navigation>
-    </div>
+    </header>
   )
 }
 

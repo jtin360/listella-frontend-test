@@ -3,7 +3,7 @@ import Right from '@/assets/right.svg';
 import Planet from '@/assets/planet.svg';
 import Image from 'next/image';
 import styles from '@/styles/Gallery.module.css';
-import { Photo } from '@/types';
+import { Page, Photo } from '@/types';
 import ImageSlider from './ImageSlider/ImageSlider';
 
 interface GalleryProps {
@@ -50,7 +50,7 @@ const Gallery = ({ photos }: GalleryProps) => {
                     <span>Scroll to see more</span>
                 </div>
                 <div className='flex grow'>
-                    <ImageSlider photos={photos}></ImageSlider>
+                    <ImageSlider photos={photos || []} ></ImageSlider>
                 </div>
                 <div className={`${styles['view-gallery-container']} flex justify-end text-2xl mb-4 mr-4 font-bold content-end`}>
                     <div className={`${styles['view-gallery']} flex flex-row`}>

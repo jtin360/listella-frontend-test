@@ -20,6 +20,12 @@ const DragAndDrop: React.FC = () => {
       );
       if (acceptedFiles.length === 0) {
         setError('No files accepted. Please only upload jpg, png, or webp files with a size limit of 5 MB.');
+        setFiles([]);
+        return;
+      }
+      if (acceptedFiles.length > 5) {
+        setError('You have too many high quality images.');
+        setFiles([]);
         return;
       }
       setFiles(acceptedFiles);
@@ -43,6 +49,12 @@ const handleFileChange = useCallback(
     );
     if (acceptedFiles.length === 0) {
       setError('No files accepted. Please only upload jpg, png, or webp files with a size limit of 5 MB.');
+      setFiles([]);
+      return;
+    }
+    if (acceptedFiles.length > 5) {
+      setError('You have too many high quality images.');
+      setFiles([]);
       return;
     }
     setFiles(acceptedFiles);
@@ -54,6 +66,7 @@ const handleFileChange = useCallback(
   return (
     <div className={`${styles['dnd-container']} flex flex-col items-center`}>
       {error && <div style={{ color: 'red' }}>{error}</div>}
+      {files.length}
       <div
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
@@ -62,20 +75,24 @@ const handleFileChange = useCallback(
         <hr className={`${styles['spacer-purple']}`}></hr>
         <p className={`${styles['description-text']}`}>Select up to 5 high quality images to upload into our database. If your image is selected, a member of our team will contact you for atribution.</p>
       </div>
-      <button className={`${styles['dnd-button']} ${UploadIcon ? `${styles.blue}` : `${styles.gray}`}`} onClick={handleFileInput}>
-        <div className={`${styles['dnd-wrapper']} flex flex-row items-center mx-auto`} onMouseOver={() => setUploadIcon(false)} onMouseOut={() => setUploadIcon(true)}>
-            <Image src={UploadIcon ? Upload : UploadGray} height={34} width={46} alt='Upload-Icon'/>
-            <p className={`${styles['dnd-text']} ${UploadIcon ? `${styles.blue}` : `${styles.gray}`}`}>Drag & Drop Your Images</p>
-        </div>
-      </button>
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-        multiple
-        accept="image/jpeg, image/png, image/webp"
-      />
+      <div className='mb-4'>
+        <button className={`${styles['dnd-button']} ${UploadIcon ? `${styles.blue}` : `${styles.gray}`}`} onClick={handleFileInput}>
+          <div className={`${styles['dnd-wrapper']} flex flex-row items-center mx-auto`} onMouseOver={() => setUploadIcon(false)} onMouseOut={() => setUploadIcon(true)}>
+              <Image src={UploadIcon ? Upload : UploadGray} height={34} width={46} alt='Upload-Icon'/>
+              <p className={`${styles['dnd-text']} ${UploadIcon ? `${styles.blue}` : `${styles.gray}`}`}>Drag & Drop Your Images</p>
+          </div>
+        </button>
+      </div>
+      <form action='/uploadfiles' method='post'>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
+          multiple
+          accept="image/jpeg, image/png, image/webp"
+        />
+      </form>
     </div>
   );
 };

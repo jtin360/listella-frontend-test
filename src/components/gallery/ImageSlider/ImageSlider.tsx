@@ -11,7 +11,7 @@ import { useHorizontalScroll } from '@/hooks/mouse';
 
 const AutoSizer = _AutoSizer as unknown as FC<AutoSizerProps>;
 interface ImageSliderProps {
-    photos: Photo[]
+    photos: Photo[];
 }
 
 const ImageSlider = ({ photos }: ImageSliderProps) => {
@@ -28,8 +28,9 @@ const ImageSlider = ({ photos }: ImageSliderProps) => {
               src={photos[index].img_src}
               className={`${styles['image-item']}`}
               key={photos[index].id}
-              width={imageSize.width}
-              height={imageSize.height}
+              fill
+            //   width={imageSize.width}
+            //   height={imageSize.height}
               alt={photos[index].id.toString()}
               onLoadingComplete={target => {
                   setSmageSize({
@@ -50,23 +51,21 @@ const ImageSlider = ({ photos }: ImageSliderProps) => {
     }
     
     const scrollRef = useHorizontalScroll();
+
     return (
         <AutoSizer>
-            {({ width, height }) => {
-            return (
-                <div>
-                    <List
-                        layout="horizontal"
-                        width={width}
-                        height={256}
-                        itemCount={photos.length}
-                        itemSize={256}
-                        outerRef={scrollRef}
-                    >
-                        {ImageWithFallBack}
-                    </List>
-                </div>);
-            }}
+            {({ width, height }) =>  (
+                <List
+                    layout="horizontal"
+                    width={width}
+                    height={256}
+                    itemCount={photos.length}
+                    itemSize={256}
+                    outerRef={scrollRef}
+                >
+                    {ImageWithFallBack}
+                </List>
+            )}
         </AutoSizer>
     )
 }

@@ -29,7 +29,7 @@ const Footer = () => {
     }
   ]
   return (
-    <div className={`${styles['footer-container']} flex flex-row justify-between text-center`}>
+    <footer className={`${styles['footer-container']} flex flex-row justify-between text-center`}>
       <div className='flex flex-row items-center'>
         {footerNavs.map((nav) => {
           return (
@@ -43,7 +43,7 @@ const Footer = () => {
         <Image src={Earth} width={33} height={33} alt="Earth-Icon" />
         <h1 className={`${styles['nasa-text']}`}>NASA</h1>
       </div>
-    </div>
+    </footer>
   )
 }
 
